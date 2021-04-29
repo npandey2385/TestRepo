@@ -1,4 +1,4 @@
-#!/grid/common/pkgs/perl/v5.20.1/bin/perl
+#!/perl/v5.20.1/bin/perl
 use strict;
 use Filesys::Df;
 use Text::Table;
@@ -10,14 +10,14 @@ my %disk_space;
 my $dump_file="/tmp/$$.txt";
 open (FH , ">> $dump_file");
 my %site=(
-        "Austin" => "/net/ausnap03/vol/sfi_vol1/grid",
-        "Beijing" => "/net/bjclapa01-s1/vols/grid",
-        "Cary"    => "/net/carynap1/vol/sfi/grid",
-        "Chelmsford" => "/net/chnapc01/vol/sfi_vol02/SFICommonTools/grid",
-        "Columbia"   => "/net/its-mdc2/vol0/grid",
-        "Dublin"     => "/net/dubnap3/vol/vol2/sfi_tools",
-        "Livingston" => "/net/lvclapa01-s1//grid/sfi/grid",
-        "Noida"      => "/net/noiclapa01-p2/it/SFI_grid2/common_tools/grid",
+        "A" => "/net/abc/vol/sfi_vol1/grid",
+        "B" => "/net/def-s1/vols/grid",
+        "C    => "/net/ghi/vol/sfi/grid",
+        "D => "/net/jkl/vol/sfi_vol02/SFICommonTools/grid",
+        "E"   => "/net/mno/vol0/grid",
+        "F"     => "/net/pqr/vol/vol2/sfi_tools",
+        "G" => "/net/stu-s1//grid/sfi/grid",
+        "H"      => "/net/vwx-p2/it/SFI_grid2/common_tools/grid",
 );
          
 for my $item (keys %site) 
@@ -38,7 +38,7 @@ for my $item (keys %site)
 			push (@disk_space_threshold,"\n$item => $disk_percent%\n");
 			push (@disk_space_threshold,"\n$space\n\n");
 			
-		#	`echo "$space\n" |mail -s "Disk space for /grid/common area on  site $item is $disk_percent% full. Need to add more disk space" "niraj\@cadence.com"`;
+		#	`echo "$space\n" |mail -s "Disk space for common area on  site $item is $disk_percent% full. Need to add more disk space" "niraj\@abc.com
 		}
 	}
 }
@@ -59,16 +59,16 @@ if(@disk_space_threshold)
 	print FH "================================\n\n";
 	print FH "Consumed disk space for rest of the sites:\n\n";
 	print FH "$table\n";
-#	`cat $dump_file |mail -s "Disk space for /grid/common area on few of sites nearing 100% full" "niraj\@cadence.com"`;
+#	`cat $dump_file |mail -s "Disk space for common area on few of sites nearing 100% full" "niraj\@abc.com
 	&mail();
 }
 
 #`rm -f $dump_file`;
 
 sub mail{
-my $to = 'niraj@cadence.com';
+my $to = 'niraj@abc.com
 my $from = 'niraj';
-my $subject = 'Disk space for /grid/common area on few of sites nearing 100% full';
+my $subject = 'Disk space for common area on few of sites nearing 100% full';
 
 my $log_file = "$dump_file"; # are you sure it's /message 
                                # and not ./message?
